@@ -18,15 +18,6 @@ class _NotepageState extends State<Notepage> with TickerProviderStateMixin {
     _tabController = TabController(length: 3, vsync: this);
   }
 
-  // Function for the second button tap
-  void _onSecondButtonTapped() {
-    print('Button 2 Tapped!');
-  }
-
-  // Function for the third button tap
-  void _onThirdButtonTapped() {
-    print('Button 3 Tapped!');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +65,10 @@ class _NotepageState extends State<Notepage> with TickerProviderStateMixin {
                         )
                       ]),
                 ),
+               
               ],
             ),
+            
           ),
           // ElevatedButton(onPressed: (){}, child:  Icon(Icons.add))
         ],

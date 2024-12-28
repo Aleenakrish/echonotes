@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
 class Notepage extends StatefulWidget {
   const Notepage({super.key});
@@ -9,7 +10,13 @@ class Notepage extends StatefulWidget {
 
 class _NotepageState extends State<Notepage> with TickerProviderStateMixin {
   late TabController _tabController;
-  bool _showOtherButtons = false;
+  bool isfab = false;
+
+  void isfabopen() {
+    setState(() {
+      isfab = !isfab;
+    });
+  }
 
   @override
   void initState() {
@@ -17,7 +24,6 @@ class _NotepageState extends State<Notepage> with TickerProviderStateMixin {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -65,18 +71,36 @@ class _NotepageState extends State<Notepage> with TickerProviderStateMixin {
                         )
                       ]),
                 ),
-               
               ],
             ),
-            
           ),
-          // ElevatedButton(onPressed: (){}, child:  Icon(Icons.add))
+          SizedBox(
+            height: 450,
+          ),
+          Container(
+              margin: EdgeInsets.only(left: 260),
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.green,
+              ),
+              child: MaterialButton(
+                  onPressed: () {Navigator.pushNamed(context, "addtask");}, child: Icon(Icons.task_alt_rounded))),
+                  SizedBox(height: 10,),
+          Container(
+            margin: EdgeInsets.only(left: 260),
+            height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.green,
+              ),
+              child: MaterialButton(
+                  onPressed: () {Navigator.pushNamed(context, "addlist");}, child: Icon(Icons.check_box_outlined)))
         ],
       ),
-      
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            
+            Navigator.pushNamed(context, "addnote");
           },
           backgroundColor: Color.fromARGB(255, 82, 182, 85),
           child: Icon(Icons.add)),

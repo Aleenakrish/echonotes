@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 
-class Addnotepage extends StatefulWidget {
-  const Addnotepage({super.key});
+class Addlist extends StatefulWidget {
+  const Addlist({super.key});
 
   @override
-  State<Addnotepage> createState() => _AddnotepageState();
+  State<Addlist> createState() => _AddlistState();
 }
 
-class _AddnotepageState extends State<Addnotepage> {
+class _AddlistState extends State<Addlist> {
+  TextEditingController c1 = TextEditingController();
+  TextEditingController c2 = TextEditingController();
+
+  List ls = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme:IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          "Add New Note",
+          "Add New List",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 82, 182, 85),
@@ -36,6 +41,7 @@ class _AddnotepageState extends State<Addnotepage> {
             Container(
               margin: EdgeInsets.only(left: 10, right: 10),
               child: TextField(
+                controller: c1,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -55,12 +61,35 @@ class _AddnotepageState extends State<Addnotepage> {
                 child: Container(
               margin: EdgeInsets.only(left: 10, right: 10),
               child: TextField(
-                maxLines: 28,
+                controller: c2,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
-                    alignLabelWithHint: true,
                     border: OutlineInputBorder(),
-                    label: Text("Content", style: TextStyle(fontSize: 18)),
+                    label: Text(
+                      "Add to list",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          // ls.add(index);
+                          // showDialog(
+                          //   context: context,
+                          //   builder: (context) {
+                          //     return AlertDialog(
+                          //       backgroundColor: Colors.transparent,
+                          //       title: Text(
+                          //         "Empty list",
+                          //         style: TextStyle(fontSize: 15),
+                          //       ),
+                          //     );
+                          //   },
+                          // );
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          size: 27,
+                          color: Colors.green,
+                        )),
                     labelStyle: TextStyle(color: Colors.green),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
@@ -68,6 +97,11 @@ class _AddnotepageState extends State<Addnotepage> {
                         borderSide: BorderSide(
                             color: const Color.fromARGB(255, 82, 182, 85)))),
               ),
+            )),
+            Expanded(child: ListView.builder(
+              itemBuilder: (context, index) {
+                ls.add(index);
+              },
             ))
           ],
         ),

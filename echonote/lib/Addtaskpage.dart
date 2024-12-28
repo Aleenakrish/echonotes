@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
 
-class Addnotepage extends StatefulWidget {
-  const Addnotepage({super.key});
+class Addtaskpage extends StatefulWidget {
+  const Addtaskpage({super.key});
 
   @override
-  State<Addnotepage> createState() => _AddnotepageState();
+  State<Addtaskpage> createState() => _AddtaskpageState();
 }
 
-class _AddnotepageState extends State<Addnotepage> {
+class _AddtaskpageState extends State<Addtaskpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme:IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           "Add New Note",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 82, 182, 85),
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.check,
-                color: Colors.white,
-              ))
+          Icon(
+            Icons.check,
+            color: Colors.white,
+          )
         ],
       ),
       body: Container(
@@ -55,12 +53,12 @@ class _AddnotepageState extends State<Addnotepage> {
                 child: Container(
               margin: EdgeInsets.only(left: 10, right: 10),
               child: TextField(
-                maxLines: 28,
+                maxLines: 26,
                 cursorColor: Colors.green,
                 decoration: InputDecoration(
                     alignLabelWithHint: true,
                     border: OutlineInputBorder(),
-                    label: Text("Content", style: TextStyle(fontSize: 18)),
+                    label: Text("Description", style: TextStyle(fontSize: 18)),
                     labelStyle: TextStyle(color: Colors.green),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),

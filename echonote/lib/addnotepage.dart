@@ -20,7 +20,7 @@ class _AddnotepageState extends State<Addnotepage> {
         backgroundColor: const Color.fromARGB(255, 82, 182, 85),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {Navigator.pushNamed(context, "notepage");},
               icon: Icon(
                 Icons.check,
                 color: Colors.white,

@@ -8,6 +8,7 @@ void main() {
   runApp(MaterialApp(
     home: Notepage(),
     routes: {
+      "notepage":(context)=>Notepage(),
       "addtask": (context) => Addtaskpage(),
       "addnote": (context) => Addnotepage(),
       "addlist": (context) => Addlist()

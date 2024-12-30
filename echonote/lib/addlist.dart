@@ -13,6 +13,19 @@ class _AddlistState extends State<Addlist> {
 
   List ls = [];
 
+  void adddata() {
+    setState(() {
+      ls.add(c1.text);
+      c1.clear();
+    });
+  }
+
+  void removeData(String index) {
+    setState(() {
+      ls.remove(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +38,9 @@ class _AddlistState extends State<Addlist> {
         backgroundColor: const Color.fromARGB(255, 82, 182, 85),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "notepage");
+              },
               icon: Icon(
                 Icons.check,
                 color: Colors.white,
@@ -34,75 +49,72 @@ class _AddlistState extends State<Addlist> {
       ),
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               height: 10,
             ),
+
             Container(
-              margin: EdgeInsets.only(left: 10, right: 10),
+              padding: EdgeInsets.only(left: 5,right: 5),
               child: TextField(
-                controller: c1,
-                cursorColor: Colors.green,
+                controller: c2,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text("Title", style: TextStyle(fontSize: 18)),
-                    labelStyle: TextStyle(color: Colors.green),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
+                    labelText: "Title",
+                    labelStyle: TextStyle(fontSize: 17,
+                      color: const Color.fromARGB(255, 36, 167, 40),
+                    ),
+                    enabledBorder: OutlineInputBorder(),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 82, 182, 85)))),
+                            color: const Color.fromARGB(255, 36, 167, 40),
+                            width: 2))),
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
-            Expanded(
-                child: Container(
-              margin: EdgeInsets.only(left: 10, right: 10),
+            Container(
+               padding: EdgeInsets.only(left: 5,right: 5),
               child: TextField(
-                controller: c2,
-                cursorColor: Colors.green,
+                controller: c1,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text(
-                      "Add to list",
-                      style: TextStyle(fontSize: 18),
+                  labelText: "Add to list",
+                  
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      adddata();
+                    },
+                    icon: Icon(
+                      Icons.add,
+                      color: const Color.fromARGB(255, 36, 167, 40),
+                      size: 30,
                     ),
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          // ls.add(index);
-                          // showDialog(
-                          //   context: context,
-                          //   builder: (context) {
-                          //     return AlertDialog(
-                          //       backgroundColor: Colors.transparent,
-                          //       title: Text(
-                          //         "Empty list",
-                          //         style: TextStyle(fontSize: 15),
-                          //       ),
-                          //     );
-                          //   },
-                          // );
-                        },
-                        icon: Icon(
-                          Icons.add,
-                          size: 27,
-                          color: Colors.green,
-                        )),
-                    labelStyle: TextStyle(color: Colors.green),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 82, 182, 85)))),
+                  ),
+                  alignLabelWithHint: true,
+                  labelStyle: TextStyle(fontSize: 17,
+                    color: const Color.fromARGB(255, 36, 167, 40),
+                  ),
+                  enabledBorder: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: const Color.fromARGB(255, 36, 167, 40), width: 2),
+                  ),
+                ),
               ),
-            )),
-            Expanded(child: ListView.builder(
-              itemBuilder: (context, index) {
-                ls.add(index);
-              },
-            ))
+            ),
+            
+            Container(
+              child: Expanded(
+                  child: ListView.builder(
+                itemCount: ls.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(ls[index]),
+                  );
+                },
+              )),
+            )
           ],
         ),
       ),

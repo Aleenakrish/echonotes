@@ -9,14 +9,19 @@ class Notepage extends StatefulWidget {
 }
 
 class _NotepageState extends State<Notepage> with TickerProviderStateMixin {
+  final key = GlobalKey<ExpandableFabState>();
   late TabController _tabController;
   bool isfab = false;
+
+
 
   void isfabopen() {
     setState(() {
       isfab = !isfab;
     });
   }
+
+  
 
   @override
   void initState() {
@@ -28,6 +33,7 @@ class _NotepageState extends State<Notepage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(title: ,),
       body: Column(
         children: [
           Container(
@@ -68,42 +74,88 @@ class _NotepageState extends State<Notepage> with TickerProviderStateMixin {
                         ),
                         Tab(
                           text: "Task",
-                        )
+                        ),
                       ]),
+                      
                 ),
+                Expanded(child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                  Container(),
+                  Container(),
+                  Container(),
+                ]))
               ],
             ),
           ),
-          SizedBox(
-            height: 450,
-          ),
-          Container(
-              margin: EdgeInsets.only(left: 260),
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.green,
-              ),
-              child: MaterialButton(
-                  onPressed: () {Navigator.pushNamed(context, "addtask");}, child: Icon(Icons.task_alt_rounded))),
-                  SizedBox(height: 10,),
-          Container(
-            margin: EdgeInsets.only(left: 260),
-            height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.green,
-              ),
-              child: MaterialButton(
-                  onPressed: () {Navigator.pushNamed(context, "addlist");}, child: Icon(Icons.check_box_outlined)))
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "addnote");
-          },
-          backgroundColor: Color.fromARGB(255, 82, 182, 85),
-          child: Icon(Icons.add)),
+      floatingActionButtonLocation: ExpandableFab.location,
+      floatingActionButton: ExpandableFab(
+          duration: Duration(microseconds: 250),
+          key: key,
+          type: ExpandableFabType.up,
+          pos: ExpandableFabPos.right,
+          childrenOffset: Offset(5, 5),
+          distance: 60,
+          openButtonBuilder: RotateFloatingActionButtonBuilder(
+            backgroundColor: const Color.fromARGB(255, 82, 182, 85),
+            foregroundColor: const Color.fromARGB(255, 82, 182, 85),
+            child: Icon(
+              Icons.add,
+              color: Colors.black,
+              size: 35,
+            ),
+          ),
+          closeButtonBuilder: FloatingActionButtonBuilder(
+              size: 50,
+              builder: (context, onPressed, progress) {
+                return FloatingActionButton(
+                    backgroundColor: const Color.fromARGB(255, 82, 182, 85),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "addnote");
+                    },
+                    child: Icon(
+                      Icons.notes,
+                      size: 35,
+                      color: Colors.black,
+                    ));
+              }),
+          children: [
+            FloatingActionButton.small(
+                heroTag: null,
+                backgroundColor: const Color.fromARGB(255, 82, 182, 85),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, "addlist");
+                  },
+                  child: Icon(
+                    Icons.check_box,
+                    color: Colors.black,
+                  ),
+                ),
+                onPressed: () {}),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "addnote");
+              },
+              child: FloatingActionButton.small(
+                  heroTag: null,
+                  backgroundColor: const Color.fromARGB(255, 82, 182, 85),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, "addtask");
+                      },
+                      child: Icon(Icons.task_alt_outlined)),
+                  onPressed: () {}),
+            ),
+          ]),
+      // floatingActionButton: FloatingActionButton(
+      //     onPressed: () {
+      //       Navigator.pushNamed(context, "addnote");
+      //     },
+      //     backgroundColor: Color.fromARGB(255, 82, 182, 85),
+      //     child: Icon(Icons.add)),
     );
   }
 }

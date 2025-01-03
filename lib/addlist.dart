@@ -11,11 +11,11 @@ class Addlist extends StatefulWidget {
 }
 
 class _AddlistState extends State<Addlist> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController content = TextEditingController();
   final TextEditingController title = TextEditingController();
   var mybox = Hive.box('mybox');
   List ls = [];
-  List li = [];
+  List _list = [];
   Map mp = {};
   @override
   Widget build(BuildContext context) {
@@ -34,18 +34,18 @@ class _AddlistState extends State<Addlist> {
           IconButton(
               onPressed: () {
                 if (mybox.get(2) == null) {
-                  mp = {"title": title.text, "description": li};
+                  mp = {"title": title.text, "description": _list};
                   ls.add(mp);
                   mybox.put(2, ls);
                 } else {
                   ls = mybox.get(2);
-                  mp = {"title": title.text, "description": li};
+                  mp = {"title": title.text, "description": _list};
                   ls.add(mp);
                   mybox.put(2, ls);
                 }
                 title.clear();
 
-                print(li);
+                print(_list);
               },
               icon: Icon(
                 Icons.check,
@@ -89,7 +89,7 @@ class _AddlistState extends State<Addlist> {
               // color: Colors.pink,
               child: Expanded(
                   child: TextField(
-                controller: _controller,
+                controller: content,
                 // maxLines: 30,
                 cursorColor: const Color.fromARGB(255, 82, 182, 85),
                 decoration: InputDecoration(
@@ -109,8 +109,8 @@ class _AddlistState extends State<Addlist> {
                     suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
-                            li.add(_controller.text);
-                            _controller.clear();
+                            _list.add(content.text);
+                            content.clear();
                           });
                         },
                         icon: Icon(
@@ -122,17 +122,17 @@ class _AddlistState extends State<Addlist> {
             ),
             Expanded(
                 child: ListView.builder(
-              itemCount: li.length,
+              itemCount: _list.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                    li[index].toString(),
+                    _list[index].toString(),
                     style: TextStyle(fontSize: 20),
                   ),
                   trailing: IconButton(
                       onPressed: () {
                         setState(() {
-                          li.removeAt(index);
+                          _list.removeAt(index);
                         });
                       },
                       icon: Icon(Icons.close)),

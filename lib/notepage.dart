@@ -28,7 +28,7 @@ class _notepageState extends State<notepage> with TickerProviderStateMixin {
     return Scaffold(
       body: Container(
         // padding: const EdgeInsets.all(8.0),
-        color:const Color.fromARGB(255, 82, 182, 85),
+        color: const Color.fromARGB(255, 82, 182, 85),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +63,6 @@ class _notepageState extends State<notepage> with TickerProviderStateMixin {
                 indicatorColor: Colors.white,
                 labelStyle:
                     TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                // dividerColor: Colors.black,
                 tabs: [
                   Tab(
                     text: "Text",
@@ -80,7 +79,7 @@ class _notepageState extends State<notepage> with TickerProviderStateMixin {
             Expanded(
               child: TabBarView(
                   controller: _taccontroller,
-                  children: [textpage(), listpage(), taskpage()]),
+                  children: [Textpage(), listpage(), Taskpage()]),
             )
           ],
         ),
@@ -96,25 +95,27 @@ class _notepageState extends State<notepage> with TickerProviderStateMixin {
                       builder: (context) => Addtask(),
                     ));
                   },
-                  backgroundColor:const Color.fromARGB(255, 82, 182, 85),
-                  child: Icon(
-                      Icons.task_alt_outlined,color: Colors.black
-                     
-                      ),
+                  backgroundColor: const Color.fromARGB(255, 82, 182, 85),
+                  child: Icon(Icons.task_alt_outlined, color: Colors.black),
                 ),
-                SizedBox(height: 7,),
+                SizedBox(
+                  height: 7,
+                ),
                 FloatingActionButton.small(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Addlist(),
                     ));
                   },
-                  backgroundColor:const Color.fromARGB(255, 82, 182, 85),
+                  backgroundColor: const Color.fromARGB(255, 82, 182, 85),
                   child: Icon(
-                    Icons.check_box, color: Colors.black,
+                    Icons.check_box,
+                    color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 7,),
+                SizedBox(
+                  height: 7,
+                ),
                 FloatingActionButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -130,7 +131,7 @@ class _notepageState extends State<notepage> with TickerProviderStateMixin {
               ],
             )
           : FloatingActionButton(
-              backgroundColor:const Color.fromARGB(255, 82, 182, 85),
+              backgroundColor: const Color.fromARGB(255, 82, 182, 85),
               onPressed: () {
                 setState(() {
                   t = true;

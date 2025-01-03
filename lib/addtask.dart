@@ -1,5 +1,7 @@
 // import 'dart:async';
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 // import 'package:hive/hive.dart';
@@ -18,42 +20,42 @@ class _AddtaskState extends State<Addtask> {
     // List li=[];
       List ls=[];
         Map mp={};
-//   Timer? _timer;
-//   //  var tme;
-// // String? date;
-// void frequentupdate(){
-//   _timer=Timer.periodic(Duration(minutes: 1), (timer) {
-//     settime();
-//   },);
-// }
-// var minute;
-// var hour;
-// var day;
-// var month;
-// var year;
+  Timer? _timer;
+  //  var tme;
+// String? date;
+void frequentupdate(){
+  _timer=Timer.periodic(Duration(minutes: 1), (timer) {
+    settime();
+  },);
+}
+var minute;
+var hour;
+var day;
+var month;
+var year;
 
-//   void settime(){
-//    setState(() {
+  void settime(){
+   setState(() {
 
-//   day= DateTime.now().day; 
-//   hour = DateTime.now().hour; 
-//   minute = DateTime.now().minute; 
-//   month = DateTime.now().month; 
-//   year = DateTime.now().year; 
-//   //  date = dateToday.toString().substring(0,10);
-//   print(day);
-//   print(month);
-//   print(year);
-//   }
-//   );
-//   }
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     settime();
-//     frequentupdate();
-//   }
+  day= DateTime.now().day; 
+  hour = DateTime.now().hour; 
+  minute = DateTime.now().minute; 
+  month = DateTime.now().month; 
+  year = DateTime.now().year; 
+  //  date = dateToday.toString().substring(0,10);
+  print(day);
+  print(month);
+  print(year);
+  }
+  );
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    settime();
+    frequentupdate();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,17 +142,17 @@ class _AddtaskState extends State<Addtask> {
                     
                       borderSide: BorderSide(color: const Color.fromARGB(255, 82, 182, 85)))),
             )),
-            // Container(
-            //   height: 80,
-            //   width: double.infinity,
-            //   padding: EdgeInsets.only(left: 15,right: 15),
-            //   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Text("$day-$month-$year".toString(),style: TextStyle(color: Colors.green)),
-            //       Text("$hour:$minute",style: TextStyle(color: Colors.green),)
-            //     ],
-            //   ),
-            // )
+            Container(
+              height: 80,
+              width: double.infinity,
+              padding: EdgeInsets.only(left: 15,right: 15),
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("$day-$month-$year".toString(),style: TextStyle(color: Colors.green)),
+                  Text("$hour:$minute",style: TextStyle(color: Colors.green),)
+                ],
+              ),
+            )
           ],
         ),
       ),

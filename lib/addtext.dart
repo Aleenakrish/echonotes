@@ -11,8 +11,8 @@ class Addtext extends StatefulWidget {
 }
 
 class _AddtextState extends State<Addtext> {
-  TextEditingController contoller1 = TextEditingController();
-  TextEditingController controller2 = TextEditingController();
+  TextEditingController c1 = TextEditingController();
+  TextEditingController c2 = TextEditingController();
   var mybox = Hive.box('mybox');
   Map mp = {};
   List ls = [];
@@ -24,31 +24,31 @@ class _AddtextState extends State<Addtext> {
 //     settime();
 //   },);
 // }
-  var minute;
-  var hour;
-  var day;
-  var month;
-  var year;
+  // var minute;
+  // var hour;
+  // var day;
+  // var month;
+  // var year;
 
-  void settime() {
-    setState(() {
-      day = DateTime.now().day;
-      hour = DateTime.now().hour;
-      minute = DateTime.now().minute;
-      month = DateTime.now().month;
-      year = DateTime.now().year;
-      //  date = dateToday.toString().substring(0,10);
-      print(day);
-      print(month);
-      print(year);
-    });
-  }
+  // void settime() {
+  //   setState(() {
+  //     day = DateTime.now().day;
+  //     hour = DateTime.now().hour;
+  //     minute = DateTime.now().minute;
+  //     month = DateTime.now().month;
+  //     year = DateTime.now().year;
+  //     //  date = dateToday.toString().substring(0,10);
+  //     print(day);
+  //     print(month);
+  //     print(year);
+  //   });
+  // }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    settime();
+    // settime();
   }
 
   @override
@@ -64,24 +64,28 @@ class _AddtextState extends State<Addtext> {
               fontWeight: FontWeight.w500,
               letterSpacing: 1),
         ),
-         actions: [IconButton(onPressed: () {
-
-          if(mybox.get(3)==null){
-            mp={"title":contoller1.text,"description":controller2.text};
-          ls.add(mp);
-          mybox.put(3, ls);
-          }else{
-            ls=mybox.get(3);
-            mp={"title":contoller1.text,"description":controller2.text};
-          ls.add(mp);
-          mybox.put(3, ls);
-          }
-          contoller1.clear();
-          controller2.clear();
-          Navigator.pop(context);
-
-                }, icon: Icon(Icons.check,color: Colors.white,))],
-        
+        actions: [
+          IconButton(
+              onPressed: () {
+                if (mybox.get(3) == null) {
+                  mp = {"title": c1.text, "description": c2.text};
+                  ls.add(mp);
+                  mybox.put(3, ls);
+                } else {
+                  ls = mybox.get(3);
+                  mp = {"title": c1.text, "description": c2.text};
+                  ls.add(mp);
+                  mybox.put(3, ls);
+                }
+                c1.clear();
+                c2.clear();
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.check,
+                color: Colors.white,
+              ))
+        ],
       ),
       body: Container(
         height: double.infinity,
@@ -96,7 +100,7 @@ class _AddtextState extends State<Addtext> {
               height: 70,
               child: Expanded(
                   child: TextField(
-                controller: contoller1,
+                controller: c1,
                 cursorColor: const Color.fromARGB(255, 82, 182, 85),
                 decoration: InputDecoration(
                     labelText: "Title",
@@ -111,7 +115,7 @@ class _AddtextState extends State<Addtext> {
             ),
             Expanded(
                 child: TextField(
-              controller: controller2,
+              controller: c2,
               maxLines: 30,
               cursorColor: const Color.fromARGB(255, 82, 182, 85),
               decoration: InputDecoration(
@@ -129,26 +133,26 @@ class _AddtextState extends State<Addtext> {
                       borderSide: BorderSide(
                           color: const Color.fromARGB(255, 82, 182, 85)))),
             )),
-            Container(
-              height: 70,
-              width: double.infinity,
-              padding: EdgeInsets.only(left: 15, right: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("$day-$month-$year".toString(),
-                      style: TextStyle(
-                          color: const Color.fromARGB(255, 82, 182, 85),
-                          fontSize: 17)),
-                  Text(
-                    "$hour:$minute",
-                    style: TextStyle(
-                        color: const Color.fromARGB(255, 82, 182, 85),
-                        fontSize: 17),
-                  )
-                ],
-              ),
-            )
+            // Container(
+            //   height: 70,
+            //   width: double.infinity,
+            //   padding: EdgeInsets.only(left: 15, right: 15),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Text("$day-$month-$year".toString(),
+            //           style: TextStyle(
+            //               color: const Color.fromARGB(255, 82, 182, 85),
+            //               fontSize: 17)),
+            //       Text(
+            //         "$hour:$minute",
+            //         style: TextStyle(
+            //             color: const Color.fromARGB(255, 82, 182, 85),
+            //             fontSize: 17),
+            //       )
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),

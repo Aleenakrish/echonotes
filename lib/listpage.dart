@@ -12,6 +12,22 @@ class listpage extends StatefulWidget {
 }
 
 class _listpageState extends State<listpage> {
+  final List<Color> containerColors = [
+    const Color.fromARGB(255, 119, 187, 122),
+    const Color.fromARGB(255, 151, 79, 163),
+    Colors.yellow,
+    const Color.fromARGB(255, 223, 159, 154),
+    Colors.orange,
+    Colors.blue,
+    const Color.fromARGB(255, 199, 178, 202),
+    Colors.green,
+    const Color.fromARGB(255, 211, 146, 141),
+    const Color.fromARGB(255, 233, 225, 235),
+    Colors.purple,
+    const Color.fromARGB(255, 247, 241, 188),
+    const Color.fromARGB(255, 253, 227, 187),
+    Colors.red,
+  ];
   var mybox = Hive.box('mybox');
 
   List ls = [];
@@ -35,8 +51,10 @@ class _listpageState extends State<listpage> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> items = List.generate(10, (index) => 'Item ${index + 1}');
     return Scaffold(
         body: Container(
+          padding: EdgeInsets.only(left: 9,right: 6),
             height: double.infinity,
             width: double.infinity,
             child: MasonryGridView.builder(
@@ -51,10 +69,10 @@ class _listpageState extends State<listpage> {
                   padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
                       // color: Colors.green[50],
-                      
+                      color: containerColors[index],
                       //  color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
 
-                      borderRadius: BorderRadius.circular(15)),
+                      borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     // mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +85,7 @@ class _listpageState extends State<listpage> {
                             ls[index]['title'].toString(),
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 18,
                                 letterSpacing: 1),
                           ),
@@ -86,7 +104,7 @@ class _listpageState extends State<listpage> {
                           itemBuilder: (context, index) {
                             return Text(_list[index].toString(),
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w500,
+                                    // fontWeight: FontWeight.w500,
                                     fontSize: 17,
                                     letterSpacing: 1));
                           },

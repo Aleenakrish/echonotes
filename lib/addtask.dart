@@ -37,9 +37,10 @@ var year;
   void settime(){
    setState(() {
 
-  day= DateTime.now().day; 
+  
   hour = DateTime.now().hour; 
   minute = DateTime.now().minute; 
+  day= DateTime.now().day; 
   month = DateTime.now().month; 
   year = DateTime.now().year; 
   //  date = dateToday.toString().substring(0,10);
@@ -59,6 +60,8 @@ var year;
 
   @override
   Widget build(BuildContext context) {
+     String tm = "$hour:$minute".toString();
+                String dt = "$day-$month-$year".toString();
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
@@ -77,7 +80,10 @@ var year;
                   if (mybox.get(1) == null) {
                     mp = {
                       "title": contoller1.text,
-                      "description": controller2.text
+                      "description": controller2.text,
+                      "time":tm,
+                      "date":dt,
+
                     };
                     ls.add(mp);
                     mybox.put(1, ls);
@@ -85,7 +91,9 @@ var year;
                     ls = mybox.get(1);
                     mp = {
                       "title": contoller1.text,
-                      "description": controller2.text
+                      "description": controller2.text, "time":tm,
+                      "date":dt,
+
                     };
                     ls.add(mp);
                     mybox.put(1, ls);

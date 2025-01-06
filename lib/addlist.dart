@@ -33,13 +33,14 @@ class _AddlistState extends State<Addlist> {
         actions: [
           IconButton(
               onPressed: () {
+                Navigator.pop(context);
                 if (mybox.get(2) == null) {
-                  mp = {"title": title.text, "description": _list};
+                  mp = {"title": title.text, "content": _list};
                   ls.add(mp);
                   mybox.put(2, ls);
                 } else {
                   ls = mybox.get(2);
-                  mp = {"title": title.text, "description": _list};
+                  mp = {"title": title.text, "content": _list};
                   ls.add(mp);
                   mybox.put(2, ls);
                 }
@@ -84,7 +85,7 @@ class _AddlistState extends State<Addlist> {
                                     const Color.fromARGB(255, 82, 182, 85)))),
                   )),
             ),
-            SizedBox(
+            Container(
               height: 80,
               // color: Colors.pink,
               child: Expanded(

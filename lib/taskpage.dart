@@ -34,7 +34,7 @@ class _TaskpageState extends State<Taskpage> {
   var mybox = Hive.box('mybox');
   List ls = [];
   @override
-  void initfun() {
+  void getdata() {
     if (mybox.get(1) != null) {
       setState(() {
         ls = mybox.get(1);
@@ -42,10 +42,28 @@ class _TaskpageState extends State<Taskpage> {
     }
   }
 
+  // Timer? _timer;
+
+  // void tmer() {
+  //   _timer = Timer.periodic(
+  //     Duration(seconds: 1),
+  //     (timer) {
+  //       setState(() {
+  //         getdata();
+  //       });
+  //     },
+  //   );
+  // }
+
+//   Timer? _timer;
+//  void timer(){
+//   _timer=Timer.(dur );
+//  }
+
   void initState() {
     // TODO: implement initState
     super.initState();
-    initfun();
+    getdata();
   }
 
   @override
@@ -86,6 +104,35 @@ class _TaskpageState extends State<Taskpage> {
                                 fontWeight: FontWeight.w600,
                                 fontSize: 19,
                                 letterSpacing: 1),
+                          ),
+                          PopupMenuButton<String>(
+                            onSelected: (String value) {
+                              print('Selected: $value');
+                            },
+                            itemBuilder: (BuildContext context) {
+                              return [""].map((String option) {
+                                return PopupMenuItem<String>(
+                                    value: option,
+                                    child: Column(
+                                      children: [
+                                        TextButton(
+                                            onPressed: () {},
+                                            child: Text(
+                                              "Edit",
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            )),
+                                        TextButton(
+                                            onPressed: () {},
+                                            child: Text(
+                                              "Delete",
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ))
+                                      ],
+                                    ));
+                              }).toList();
+                            },
                           ),
                         ],
                       ),

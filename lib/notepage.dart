@@ -79,7 +79,7 @@ class _notepageState extends State<notepage> with TickerProviderStateMixin {
             Expanded(
               child: TabBarView(
                   controller: _taccontroller,
-                  children: [Textpage(), listpage(), Taskpage()]),
+                  children: [Textpage(), Listpage(), Taskpage()]),
             )
           ],
         ),

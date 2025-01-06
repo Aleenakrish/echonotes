@@ -1,6 +1,7 @@
 // import 'package:echonotes/listpage.dart';
 import 'package:echonotes/notepage.dart';
 import 'package:echonotes/readpage.dart';
+import 'package:echonotes/readtextpage.dart';
 // import 'package:echonotes/textpage.dart';
 // import 'package:echonotes/taskpage.dart';
 
@@ -14,6 +15,7 @@ void main() async {
     home: notepage(),
     // home: ListTask(),
     routes: {"readpage": (context) => ReadPage(),
+    "readtextpage":(context)=>Readtextpage()
     // "taskpage": (context) => taskpage(),
     // "textpage": (context) => textpage(),
     // "listpage": (context) => listpage()

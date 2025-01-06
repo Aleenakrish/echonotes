@@ -60,7 +60,7 @@ class _TextpageState extends State<Textpage> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, "readpage",
+                    Navigator.pushNamed(context, "readtextpage",
                         arguments: index.toString());
                   },
                   child: Container(

@@ -2,7 +2,9 @@
 import 'package:echonotes/notepage.dart';
 import 'package:echonotes/readlistpage.dart';
 import 'package:echonotes/readpage.dart';
+import 'package:echonotes/readtaskpage.dart';
 import 'package:echonotes/readtextpage.dart';
+import 'package:echonotes/taskpage.dart';
 // import 'package:echonotes/textpage.dart';
 // import 'package:echonotes/taskpage.dart';
 
@@ -18,12 +20,13 @@ void main() async {
     initialRoute: 'ntpg',
     routes: {
       "readpage": (context) => ReadPage(),
-    "readtextpage":(context)=>Readtextpage(),
-    "ntpg":(context)=>notepage(),
-    // "readlistpage":(context)=>Readlistpage()
-    // "taskpage": (context) => taskpage(),
-    // "textpage": (context) => textpage(),
-    // "listpage": (context) => listpage()
+      "readtextpage": (context) => Readtextpage(),
+      "ntpg": (context) => notepage(),
+      "readlistpage": (context) => Readlistpage(),
+      "taskpage": (context) => Taskpage(),
+      "readtaskpage": (context) => Readtaskpage()
+      // "textpage": (context) => textpage(),
+      // "listpage": (context) => listpage()
     },
   ));
 }

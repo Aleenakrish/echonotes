@@ -62,6 +62,7 @@ class _ReadtextpageState extends State<Readtextpage> {
                       appBar: AppBar(
                         backgroundColor: const Color.fromARGB(255, 82, 182, 85),
                         title: Text("Edit"),
+                        
                       ),
                       body: Container(
                         height: double.infinity,

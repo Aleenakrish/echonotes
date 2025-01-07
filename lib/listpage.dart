@@ -1,7 +1,5 @@
 // import 'dart:math';
 
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hive/hive.dart';
@@ -14,24 +12,8 @@ class Listpage extends StatefulWidget {
 }
 
 class _ListpageState extends State<Listpage> {
-  // final List<Color> containerColors = [
-  //   const Color.fromARGB(255, 199, 178, 202),
-  //   Colors.yellow,
-  //   const Color.fromARGB(255, 152, 167, 180),
-  //   Colors.orange,
-  //   const Color.fromARGB(255, 173, 216, 252),
-  //   const Color.fromARGB(255, 233, 225, 235),
-  //   Colors.purple,
-  //   const Color.fromARGB(255, 119, 187, 122),
-  //   const Color.fromARGB(255, 211, 146, 141),
-  //   const Color.fromARGB(255, 247, 241, 188),
-  //   const Color.fromARGB(255, 223, 159, 154),
-  //   Colors.green,
-  //   const Color.fromARGB(255, 253, 227, 187),
-  //   Colors.red,
-  //   const Color.fromARGB(255, 151, 79, 163),
-  //   Colors.blue,
-  // ];
+  TextEditingController ti = TextEditingController();
+  TextEditingController ti2 = TextEditingController();
   var mybox = Hive.box('mybox');
 
   List ls = [];
@@ -47,30 +29,15 @@ class _ListpageState extends State<Listpage> {
     });
   }
 
-  // Timer? _timer;
-
-  // void tmer() {
-  //   _timer = Timer.periodic(
-  //     Duration(seconds: 2),
-  //     (timer) {
-  //       setState(() {
-  //         getdata();
-  //       });
-  //     },
-  //   );
-  // }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getdata();
-    // tmer();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<String> items = List.generate(15, (index) => 'Item ${index + 1}');
     return Scaffold(
         body: Container(
             padding: EdgeInsets.only(left: 7, right: 7),
@@ -93,21 +60,16 @@ class _ListpageState extends State<Listpage> {
                   child: Container(
                     padding: EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                        // color: containerColors[index],
-                        color: Colors.green[100],
-
+                        // color: Colors.red.shade100,
                         //  color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-
-                        borderRadius: BorderRadius.circular(15)),
+                        color: Colors.green[100],
+                        borderRadius: BorderRadius.circular(7)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            // SizedBox(
-                            //   width: 1,
-                            // ),
                             Text(
                               ls[index]['title'].toString(),
                               overflow: TextOverflow.ellipsis,
@@ -116,7 +78,6 @@ class _ListpageState extends State<Listpage> {
                                   fontSize: 18,
                                   letterSpacing: 1),
                             ),
-
                             PopupMenuButton<String>(
                               onSelected: (String value) {
                                 print('Selected: $value');
@@ -129,7 +90,158 @@ class _ListpageState extends State<Listpage> {
                                         children: [
                                           TextButton(
                                               onPressed: () {
-                                                
+                                                setState(() {
+                                                  ti.text = ls[index]["title"];
+                                                  // li = ls[index]["description"];
+                                                });
+
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Scaffold(
+                                                      appBar: AppBar(
+                                                        iconTheme:
+                                                            IconThemeData(
+                                                                color: Colors
+                                                                    .white),
+                                                        title: Text("Edit",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Colors
+                                                                    .white)),
+                                                        backgroundColor: Colors
+                                                            .greenAccent
+                                                            .shade700,
+                                                        actions: [
+                                                          IconButton(
+                                                              onPressed: () {
+                                                                ls[index][
+                                                                        "title"] =
+                                                                    ti.text;
+                                                                ls[index][
+                                                                    "description"] = li;
+                                                                mybox.put(
+                                                                    2, ls);
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
+                                                              icon: Icon(
+                                                                  Icons.check))
+                                                        ],
+                                                      ),
+                                                      body: Container(
+                                                        height: double.infinity,
+                                                        width: double.infinity,
+                                                        padding:
+                                                            EdgeInsets.all(15),
+                                                        child: Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 80,
+                                                              child: Expanded(
+                                                                  flex: 1,
+                                                                  child:
+                                                                      TextField(
+                                                                    controller:
+                                                                        ti,
+                                                                    cursorColor:
+                                                                        Colors
+                                                                            .green,
+                                                                    decoration: InputDecoration(
+                                                                        labelText:
+                                                                            "Title",
+                                                                        labelStyle: TextStyle(
+                                                                            color: Colors
+                                                                                .green,
+                                                                            fontSize:
+                                                                                20),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(borderSide: BorderSide(width: 2, color: Colors.green)),
+                                                                        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.green))),
+                                                                  )),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 80,
+                                                              // color: Colors.pink,
+                                                              child: Expanded(
+                                                                  child:
+                                                                      TextField(
+                                                                controller: ti2,
+                                                                // maxLines: 30,
+                                                                cursorColor:
+                                                                    Colors
+                                                                        .green,
+                                                                decoration: InputDecoration(
+                                                                    alignLabelWithHint: true,
+                                                                    labelText: "Description",
+                                                                    labelStyle: TextStyle(
+                                                                      color: Colors
+                                                                          .green,
+                                                                      fontSize:
+                                                                          20,
+                                                                    ),
+                                                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 2, color: Colors.green)),
+                                                                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.green)),
+                                                                    suffixIcon: IconButton(
+                                                                        onPressed: () {
+                                                                          setState(
+                                                                              () {
+                                                                            li.add(ti2.text);
+                                                                          });
+                                                                          setState(
+                                                                              () {
+                                                                            li.add(ti2.text);
+                                                                            ti2.clear();
+                                                                            print(li);
+                                                                          });
+                                                                        },
+                                                                        icon: Icon(
+                                                                          Icons
+                                                                              .add,
+                                                                          color:
+                                                                              Colors.green,
+                                                                          size:
+                                                                              30,
+                                                                        ))),
+                                                              )),
+                                                            ),
+                                                            Expanded(
+                                                                child: ListView
+                                                                    .builder(
+                                                              itemCount:
+                                                                  li.length,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                      index) {
+                                                                return ListTile(
+                                                                  title: Text(
+                                                                    li[index]
+                                                                        .toString(),
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            20),
+                                                                  ),
+                                                                  trailing:
+                                                                      IconButton(
+                                                                          onPressed:
+                                                                              () {
+                                                                            setState(() {
+                                                                              li.removeAt(index);
+                                                                            });
+                                                                          },
+                                                                          icon:
+                                                                              Icon(Icons.close)),
+                                                                );
+                                                              },
+                                                            )),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
                                               },
                                               child: Text(
                                                 "Edit",
@@ -140,6 +252,8 @@ class _ListpageState extends State<Listpage> {
                                               onPressed: () {
                                                 setState(() {
                                                   ls.removeAt(index);
+                                                  mybox.put(2, ls);
+                                                  Navigator.pop(context);
                                                 });
                                               },
                                               child: Text(
@@ -152,18 +266,28 @@ class _ListpageState extends State<Listpage> {
                                 }).toList();
                               },
                             ),
+                            // IconButton(
+                            //   padding: EdgeInsets.all(0),
+                            //   onPressed: () {},
+                            //   icon: Icon(Icons.more_vert),
+                            // )
                           ],
                         ),
                         SizedBox(
                           height: 5,
                         ),
+                        // Text(
+                        //   li[index].toString(),
+                        //   maxLines: 6,
+                        // )
                         Container(
-                          height: 100,
+                          height: 80,
                           child: Expanded(
                               child: ListView.builder(
                             itemCount: li.length,
                             itemBuilder: (context, index) {
                               return Text(li[index].toString(),
+                                  // maxLines: 10,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 17,

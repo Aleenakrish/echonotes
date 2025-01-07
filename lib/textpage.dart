@@ -160,6 +160,7 @@ class _TextpageState extends State<Textpage> {
                                                           EdgeInsets.all(5),
                                                       child: Column(
                                                         children: [
+                                                          SizedBox(height: 10,),
                                                           Container(
                                                               child: TextField(
                                                             controller: title,
@@ -195,7 +196,7 @@ class _TextpageState extends State<Textpage> {
                                                                                 Colors.green))),
                                                           )),
                                                           SizedBox(
-                                                            height: 10,
+                                                            height: 20,
                                                           ),
                                                           Expanded(
                                                               child: TextField(

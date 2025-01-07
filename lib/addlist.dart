@@ -11,7 +11,7 @@ class Addlist extends StatefulWidget {
 }
 
 class _AddlistState extends State<Addlist> {
-  final TextEditingController content = TextEditingController();
+  final TextEditingController description = TextEditingController();
   final TextEditingController title = TextEditingController();
   var mybox = Hive.box('mybox');
   List ls = [];
@@ -35,12 +35,12 @@ class _AddlistState extends State<Addlist> {
               onPressed: () {
                 Navigator.pop(context);
                 if (mybox.get(2) == null) {
-                  mp = {"title": title.text, "content": _list};
+                  mp = {"title": title.text, "description": _list};
                   ls.add(mp);
                   mybox.put(2, ls);
                 } else {
                   ls = mybox.get(2);
-                  mp = {"title": title.text, "content": _list};
+                  mp = {"title": title.text, "description": _list};
                   ls.add(mp);
                   mybox.put(2, ls);
                 }
@@ -90,7 +90,7 @@ class _AddlistState extends State<Addlist> {
               // color: Colors.pink,
               child: Expanded(
                   child: TextField(
-                controller: content,
+                controller: description,
                 // maxLines: 30,
                 cursorColor: const Color.fromARGB(255, 82, 182, 85),
                 decoration: InputDecoration(
@@ -110,8 +110,8 @@ class _AddlistState extends State<Addlist> {
                     suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
-                            _list.add(content.text);
-                            content.clear();
+                            _list.add(description.text);
+                            description.clear();
                           });
                         },
                         icon: Icon(

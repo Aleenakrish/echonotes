@@ -60,8 +60,6 @@ class _ListpageState extends State<Listpage> {
                   child: Container(
                     padding: EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                        // color: Colors.red.shade100,
-                        //  color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
                         color: Colors.green[100],
                         borderRadius: BorderRadius.circular(7)),
                     child: Column(
@@ -92,7 +90,7 @@ class _ListpageState extends State<Listpage> {
                                               onPressed: () {
                                                 setState(() {
                                                   ti.text = ls[index]["title"];
-                                                  // li = ls[index]["description"];
+                                                  li = ls[index]["description"];
                                                 });
 
                                                 showDialog(
@@ -266,20 +264,11 @@ class _ListpageState extends State<Listpage> {
                                 }).toList();
                               },
                             ),
-                            // IconButton(
-                            //   padding: EdgeInsets.all(0),
-                            //   onPressed: () {},
-                            //   icon: Icon(Icons.more_vert),
-                            // )
                           ],
                         ),
                         SizedBox(
                           height: 5,
                         ),
-                        // Text(
-                        //   li[index].toString(),
-                        //   maxLines: 6,
-                        // )
                         Container(
                           height: 80,
                           child: Expanded(
@@ -301,7 +290,6 @@ class _ListpageState extends State<Listpage> {
                 );
               },
             ))
-        //  Center(child: Text("list"),),
         );
   }
 }

@@ -36,9 +36,7 @@ class _ReadlistpageState extends State<Readlistpage> {
         }
       } catch (e) {
         print(e);
-      }
-      // li=mp['descri']
-      // print(li);
+      } 
     }
   }
 
@@ -267,14 +265,10 @@ class _ReadlistpageState extends State<Readlistpage> {
                         setState(() {
                           ll[index] = value ?? true;
                           ll[index] ? Colors.green : Colors.white;
-                          // setState(() {
-                          //   li.removeAt(index);
-                          // });
+
                           ls[i!]['description'] = li;
                           mybox.put(2, ls);
                         });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Succesfully Removed")));
                       },
                     ),
                   );

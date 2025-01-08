@@ -20,7 +20,7 @@ class _TaskpageState extends State<Taskpage> {
   List llll = [];
   List listl = [];
   @override
-  void initfun() {
+  void getdata() {
     if (mybox.get(1) != null) {
       setState(() {
         ls = mybox.get(1);
@@ -32,16 +32,16 @@ class _TaskpageState extends State<Taskpage> {
 
   void tmer() {
     _timer = Timer.periodic(
-      Duration(seconds: 1),
+      Duration(milliseconds: 5),
       (timer) {
         // getdata();
-        initfun();
+        getdata();
         // a();
       },
     );
   }
 
-  void a() {
+  void animatedcontainer() {
     ll = List.generate(ls.length, (index) => false);
     ChangeNotifier();
   }
@@ -50,7 +50,7 @@ class _TaskpageState extends State<Taskpage> {
     llll = List.generate(ls.length, (index) => false);
   }
 
-  void vv() {
+  void color() {
     listl = List.generate(ls.length, (index) => false);
     print(listl);
     List o = [];
@@ -76,11 +76,11 @@ class _TaskpageState extends State<Taskpage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    initfun();
+    getdata();
     // tmer();
-    a();
+    animatedcontainer();
     toColor();
-    vv();
+    color();
   }
 
   @override
@@ -346,29 +346,28 @@ class _TaskpageState extends State<Taskpage> {
                             : SizedBox(
                                 height: 0,
                               ),
-
-                        // ll[index]
-                        //     ? llll[index]
-                        //         ? TextButton(
-                        //             onPressed: () {
-                        //               listl[index] = true;
-                        //               mybox.put(11, listl);
-                        //             },
-                        //             child: Text(
-                        //                 listl[index]
-                        //                     ? "completed"
-                        //                     : "Mark as done",
-                        //                 style: TextStyle(
-                        //                     fontWeight: FontWeight.bold,
-                        //                     color: Colors.black,
-                        //                     fontSize: 13)))
-                        //         : Text("Task ended",
-                        //             style: TextStyle(
-                        //                 fontWeight: FontWeight.bold,
-                        //                 fontSize: 13))
-                        //     : SizedBox(
-                        //         height: 1,
-                        //       ),
+                        ll[index]
+                            ? llll[index]
+                                ? TextButton(
+                                    onPressed: () {
+                                      listl[index] = true;
+                                      mybox.put(11, listl);
+                                    },
+                                    child: Text(
+                                        listl[index]
+                                            ? "completed"
+                                            : "Mark as done",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                            fontSize: 13)))
+                                : Text("Task ended",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13))
+                            : SizedBox(
+                                height: 1,
+                              ),
                       ],
                     ),
                   ),
